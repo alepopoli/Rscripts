@@ -13,9 +13,10 @@ library(tidyverse)
 
 
 # Import data
-
-datiISTAT <- read.csv("comuni_giornaliero_dati_fino_31agosto.csv", na="n.d.")
-
+temp <- tempfile()
+download.file("https://www.istat.it/it/files//2020/03/Dataset-decessi-comunali-giornalieri-e-tracciato-record_22ottobre2020.zip", temp)
+datiISTAT <- read.csv(unz(temp, "comuni_giornaliero_dati_fino_31agosto.csv"), na.strings = "n.d.") 
+unlink(temp)
 
 # Examine the data:
 
